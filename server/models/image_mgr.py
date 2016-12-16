@@ -41,7 +41,7 @@ class ImageManager(object):
 
 	_image_queue = []
 	def __init__(self):
-		ssl._create_default_https_context = ssl._create_unverified_contextprint
+		ssl._create_default_https_context = ssl._create_unverified_context()
 		return
 
 	def addImage(self, image):
