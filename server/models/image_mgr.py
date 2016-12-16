@@ -29,7 +29,10 @@ class ImageManager(object):
 	_access_key = 'l1NMMFf-xmqnqwQ3xibbiScwBjjZYHLiFIaTGFod'
 	_secret_key = 'n0olj_tdl-QUeHRK8LqJ_xeoOKW8vfGEgYWiihvV'
 
-	# 七牛上传的空间
+	# 七牛上传的空间名字
+	_bucket_name = 'zngj'
+
+	# 七牛上传的空间域名
 	_bucket_domain = 'oi2mkhmod.bkt.clouddn.com'
 
 	_weixin_image_download_url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s"
@@ -39,9 +42,9 @@ class ImageManager(object):
 		pass
 
 	def addImage(self, image):
-		#self.downloadImageFromWeChatServer(image)  # For Test
-		#self.uploadImageToQiniu(image)		# For Test
-		self._image_queue.append(image)
+		self.downloadImageFromWeChatServer(image)  # For Test
+		self.uploadImageToQiniu(image)		# For Test
+		#self._image_queue.append(image)
 
 	def downloadImageFromWeChatServer(self, image):
 		url = self._weixin_image_download_url % (image["token"], image["id"])
@@ -57,7 +60,7 @@ class ImageManager(object):
 		key = '%s.jpg' % image["id"]
 
 		# 生成上传 Token，可以指定过期时间等
-		token = q.upload_token(self._bucket_domain, key, 3600)
+		token = q.upload_token(self._bucket_name, key, 3600)
 
 		# 要上传文件的本地路径
 		localfile = image["local_path"]
