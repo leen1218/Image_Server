@@ -39,9 +39,9 @@ class ImageManager(object):
 		pass
 
 	def addImage(self, image):
-		self.downloadImageFromWeChatServer(image)  # For Test
-		self.uploadImageToQiniu(image)		# For Test
-		# self._image_queue.append(image)
+		#self.downloadImageFromWeChatServer(image)  # For Test
+		#self.uploadImageToQiniu(image)		# For Test
+		self._image_queue.append(image)
 
 	def downloadImageFromWeChatServer(self, image):
 		url = self._weixin_image_download_url % (image["token"], image["id"])

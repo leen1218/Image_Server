@@ -25,6 +25,7 @@ class UploadImage(BaseHandler):
 
 	def post(self):
 		body = escape.json_decode(self.request.body)
+		logger.debug("UploadImage : body = " + str(body))
 		images = body["images"]
 		token = body["token"]
 		for image in images:
