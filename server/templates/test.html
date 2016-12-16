@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src={{ static_url("js/jquery.min.3.1.1.js") }}></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src={{ static_url("js/wx_images.js") }}></script>
+    <link rel="stylesheet" type="text/css" href={{ static_url("css/weui.min.css") }}></link>
+    <link rel="stylesheet" type="text/css" href={{ static_url("css/orderPage.css") }}></link>
+
+    <script>
+        $(document).ready(function(){
+        $("#button1").click(function(){
+            submitOrder();
+
+                        /*alert(location.href.split('#')[0]);
+                        $("div").load("https://www.yixiuhz.online/page/TEST",
+                                function (responseText, textStatus, XMLHttpRequest){
+                                    //this;//在这里this指向的是当前的DOM对象，即$(".ajax.load")[0]
+                                    //alert(responseText);//请求返回的内容
+                                    //$("div").text(responseText);
+                                    $("#div1").text("Good Job!");
+                                    //alert(textStatus);//请求状态：success，error
+                                    //alert(XMLHttpRequest);//XMLHttpRequest对象
+                                });*/
+                    });
+
+                    $("#button2").click(function(){
+                        chooseAndUploadImage();
+
+                    });
+
+        wx.config({
+            debug: true, 
+            appId: '{{ wxSign["appId"] }}', // 必填，公众号的唯一标识
+            timestamp: {{ wxSign['timestamp'] }}, // 必填，生成签名的时间戳
+            nonceStr: '{{ wxSign["nonceStr"] }}', // 必填，生成签名的随机串
+            signature: '{{ wxSign["signature"] }}',// 必填，签名，见附录1
+            jsApiList: ['chooseImage', 'uploadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        wx.ready(function(){
+
+            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+            alert('success');
+        });
+
+        wx.error(function(res){
+
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            alert(res);
+
+        });
+    });
+    </script>
+</head>
+
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+<button id='button1' class="weui_btn weui_btn_primary">提交</button>
+<button id="button2" class="weui_btn weui_btn_primary">照相</button>
+<div id="uploadImages">
+</div>
+<div id="loader"></div>
+<div id="mask"></div>
+</body>
+</html>
