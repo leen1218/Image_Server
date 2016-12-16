@@ -9,6 +9,8 @@
 from qiniu import Auth, put_file, etag, urlsafe_base64_encode
 from utils.logger_helper import logger
 import urllib
+import ssl
+
 
 """Global Image Manager Instance"""
 
@@ -39,7 +41,8 @@ class ImageManager(object):
 
 	_image_queue = []
 	def __init__(self):
-		pass
+		ssl._create_default_https_context = ssl._create_unverified_contextprint
+		return
 
 	def addImage(self, image):
 		self.downloadImageFromWeChatServer(image)  # For Test
