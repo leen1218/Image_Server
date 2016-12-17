@@ -102,7 +102,7 @@ class ImageManager(object):
 
 		ret, info = put_file(token, key, localfile)
 		if ret["key"] == key:
-			logger.debug("ImageManager : upload local image" + localfile.encode("utf-8") + "to qiniu successfully, save as " + info["key"])
+			logger.debug("ImageManager : upload local image" + localfile.encode("utf-8") + "to qiniu successfully, save as " + ret["key"])
 			return True
 		else:
 			return False
