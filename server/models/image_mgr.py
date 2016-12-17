@@ -43,10 +43,10 @@ class ImageManager(object):
 	# 图片队列，业务服务器添加图片到该待下载队列，由定时器负责下载
 	_image_queue = []
 
-	_upload_image_time_interval = 60
+	_upload_image_time_interval = 60 * 1000
 
 	def __init__(self):
-		pass
+		self.start()
 
 	def start(self):
 		"""执行定时器任务"""
