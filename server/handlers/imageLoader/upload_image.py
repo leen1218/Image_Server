@@ -33,7 +33,7 @@ class UploadImage(BaseHandler):
 			image_d["id"] = image
 			image_d["token"] = token
 			image_d["local_path"] = self.settings["static_path"] + "/images/%s.jpg" % image
-			logger.debug("UploadImage : 图片 %s 添加到下载队列" % image)
+			logger.debug("UploadImage : 图片 %s 添加到下载队列" % image.encode("utf-8"))
 			self.model.image_mgr.addImage(image_d)
 		response = {"msg" : "图片已添加到下载队列"}
 		response_json = json.dumps(response, encoding="UTF-8", ensure_ascii=False)
