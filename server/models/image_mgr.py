@@ -9,7 +9,7 @@
 from qiniu import Auth, put_file, etag, urlsafe_base64_encode
 from utils.logger_helper import logger
 import urllib
-import ssl
+import tornado
 
 
 """Global Image Manager Instance"""
@@ -39,21 +39,50 @@ class ImageManager(object):
 
 	_weixin_image_download_url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s"
 
+	# 图片队列，业务服务器添加图片到该待下载队列，由定时器负责下载
 	_image_queue = []
+
+	_upload_image_time_interval = 60
+
 	def __init__(self):
-		ssl._create_default_https_context = ssl._create_unverified_context()
-		return
+		pass
+
+	def start(self):
+		"""执行定时器任务"""
+		logger.info('【图片服务器管理者】>>>执行定时器任务')
+		tornado.ioloop.IOLoop.instance().call_later(0, self.downloadAndUploadImage)
+		tornado.ioloop.PeriodicCallback(self.downloadAndUploadImage, self._upload_image_time_interval).start()
 
 	def addImage(self, image):
-		self.downloadImageFromWeChatServer(image)  # For Test
-		self.uploadImageToQiniu(image)		# For Test
-		#self._image_queue.append(image)
+		self._image_queue.append(image)
+
+	# 定时器调用，因为目前跟业务服务器位于同一台云服务器，资源分配策略，每一分钟执行一次图片上传函数
+	def downloadAndUploadImage(self):
+		if self._image_queue.length > 0:
+			image = self._image_queue[0]
+			if self.downloadImageFromWeChatServer(image):
+				# 从微信服务器下载成功
+				if self.uploadImageToQiniu(image):
+					# 上传七牛服务器成功
+					self._image_queue.remove(0)
+					return True
+				else:
+					return False
+			else:
+				return False
+		else:
+			logger.debug("ImageManager : 没有待下载图片，管理器空闲！")
+		return False
+
 
 	def downloadImageFromWeChatServer(self, image):
 		url = self._weixin_image_download_url % (image["token"], image["id"])
 		local_path = image["local_path"]
-		urllib.urlretrieve(url, local_path)
-		return local_path
+		try:
+			urllib.urlretrieve(url, local_path)
+		except Exception:
+			return False
+		return True
 
 	def	uploadImageToQiniu(self, image):
 		# 构建鉴权对象
@@ -69,8 +98,10 @@ class ImageManager(object):
 		localfile = image["local_path"]
 
 		ret, info = put_file(token, key, localfile)
-		logger.debug("ImageManager : upload image to qiniu" + info)
-		assert ret['key'] == key
-		assert ret['hash'] == etag(localfile)
+		if info["statuc_code"] == 200:
+			logger.debug("ImageManager : upload local image" + localfile + "to qiniu successfully, save as " + info["key"])
+			return True
+		else:
+			return False
 
 
