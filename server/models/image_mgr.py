@@ -10,6 +10,7 @@ from qiniu import Auth, put_file, etag, urlsafe_base64_encode
 from utils.logger_helper import logger
 import urllib
 import tornado
+import os
 
 
 """Global Image Manager Instance"""
@@ -58,20 +59,22 @@ class ImageManager(object):
 
 	# 定时器调用，因为目前跟业务服务器位于同一台云服务器，资源分配策略，每一分钟执行一次图片上传函数
 	def downloadAndUploadImage(self):
-		if self._image_queue.length > 0:
+		if len(self._image_queue) > 0:
 			image = self._image_queue[0]
 			if self.downloadImageFromWeChatServer(image):
 				# 从微信服务器下载成功
 				if self.uploadImageToQiniu(image):
 					# 上传七牛服务器成功
 					self._image_queue.remove(0)
+					# 删除本地图片
+					os.remove(image["local_path"])
 					return True
 				else:
 					return False
 			else:
 				return False
 		else:
-			logger.debug("ImageManager : 没有待下载图片，管理器空闲！")
+			logger.debug("ImageManager : 没有待下载图片，图片服务器空闲！")
 		return False
 
 
