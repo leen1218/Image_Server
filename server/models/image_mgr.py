@@ -65,7 +65,7 @@ class ImageManager(object):
 				# 从微信服务器下载成功
 				if self.uploadImageToQiniu(image):
 					# 上传七牛服务器成功
-					self._image_queue.remove(0)
+					del self._image_queue[0]
 					# 删除本地图片
 					os.remove(image["local_path"])
 					return True
