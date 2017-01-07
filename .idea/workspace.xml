@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b870799-75a1-47df-ae7e-cd2b2b40e9b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py" afterPath="$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/image_mgr.py" afterPath="$PROJECT_DIR$/server/models/image_mgr.py" />
     </list>
     <ignored path="ZNGJ_Server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="image_mgr.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="image_mgr.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/models/image_mgr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+            <state relative-caret-position="-92">
+              <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
               <folding>
                 <element signature="e#149#210#0" expanded="true" />
               </folding>
@@ -45,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload_image.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="upload_image.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+            <state relative-caret-position="369">
+              <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
               <folding>
                 <element signature="e#148#174#0" expanded="true" />
               </folding>
@@ -132,8 +130,8 @@
         <option value="$PROJECT_DIR$/server/static/js/image-uploader.js" />
         <option value="$PROJECT_DIR$/server/templates/test.html" />
         <option value="$PROJECT_DIR$/server/static/js/wx_images.js" />
-        <option value="$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py" />
         <option value="$PROJECT_DIR$/server/models/image_mgr.py" />
+        <option value="$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py" />
       </list>
     </option>
   </component>
@@ -144,7 +142,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="570" />
+    <option name="x" value="56" />
     <option name="y" value="23" />
     <option name="width" value="1260" />
     <option name="height" value="699" />
@@ -542,7 +540,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="570" y="23" width="1260" height="699" extended-state="0" />
+    <frame x="56" y="23" width="1260" height="699" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23316912" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -806,22 +804,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py">
+    <entry file="file://$PROJECT_DIR$/server/models/image_mgr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+        <state relative-caret-position="-92">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
           <folding>
-            <element signature="e#148#174#0" expanded="true" />
+            <element signature="e#149#210#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/image_mgr.py">
+    <entry file="file://$PROJECT_DIR$/server/handlers/imageLoader/upload_image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+        <state relative-caret-position="369">
+          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
           <folding>
-            <element signature="e#149#210#0" expanded="true" />
+            <element signature="e#148#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
