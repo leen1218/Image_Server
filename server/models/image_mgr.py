@@ -92,7 +92,7 @@ class ImageManager(object):
 		q = Auth(self._access_key, self._secret_key)
 
 		# 上传到七牛后保存的文件名
-		key = '%s.jpg' % image["id"]
+		key = '%s.jpg' % image["save_path"]
 
 		# 生成上传 Token，可以指定过期时间等
 		token = q.upload_token(self._bucket_name, key, 3600)
