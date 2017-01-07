@@ -76,7 +76,7 @@ var submitOrder = function () {
 
     $.ajax({
         async: false,
-        url: "https://www.yixiuhz.online/imageUploader/upload",
+        url: "https://www.yixiuhz.top/imageUploader/upload",
         data: JSON.stringify({"media_ids": imageIds}),
         type: "POST",
         dataType: "json",

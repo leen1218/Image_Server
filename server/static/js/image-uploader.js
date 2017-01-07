@@ -164,7 +164,7 @@ ImageUploader.prototype.upload = function (files) {
 
 function uploadImages(images) {
 	window.onerror = function(e) {alert(JSON.stringify(e));}
-			var baseUrl = "https://www.yixiuhz.online/imageUploader/upToken?imageURL=";
+			var baseUrl = "https://www.yixiuhz.top/imageUploader/upToken?imageURL=";
 			alert("1");
 			var imageUploader = new ImageUploader({
 					tokenUrl: '/j/qiniu/photo_token'
